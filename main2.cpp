@@ -1,4 +1,4 @@
-ï»¿#include <iostream>
+#include <iostream>
 #include <time.h>
 #include <stdlib.h>
 #include <string>
@@ -28,6 +28,7 @@ int main()
 	char JiXu='y';
 	srand((int)time(0));
 
+
 	while (JiXu=='y')
 	{
 		XiPai();
@@ -41,12 +42,13 @@ int main()
 		else
 			cout<<"\n  Victory!\n\n";
 
-		cout<<"Continue?(y/n)ï¼š";
+		cout<<"Continue?(y/n)£º";
 
 		JiXu=GetInput();
 		cout<<"\n\n";
 	}
 	return(0);
+	
 
 }
 
@@ -193,19 +195,23 @@ char GetInput()
 
 	while(1)
 	{
-
-		getline(cin,input);
-		if (input.length()!=1)
+		try
+		{
+			getline(cin,input);				
+			if ((input.length()!=1)||!(input=="y"||input=="Y"||input=="n"||input=="N"))
+				throw 0;
+		}
+		catch(int)
 		{
 			cout<<"error:please input y/n."<<endl;
-			continue;
 		}
+
 		if (input=="y"||input=="Y")
 			return('y');
 		else if (input=="n"||input=="N")
 			return('n');
 		
-		cout<<"error:please input y/n."<<endl;
+
 	}
 }
 
